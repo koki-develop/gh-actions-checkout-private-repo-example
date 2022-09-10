@@ -1,0 +1,19 @@
+name: checkout private repository
+
+on:
+  push:
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: checkout private repository
+        uses: actions/checkout@v3
+        with:
+          repository: koki-develop/private-repo-example # リポジトリを指定
+          ssh-key: ${{ secrets.PRIVATE_REPO_SSH_KEY }} # 作成したシークレットを設定
+          path: private-repo-example # checkout 先のパスを設定
+          ref: main # checkout するブランチを指定
