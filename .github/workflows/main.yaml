@@ -1,0 +1,22 @@
+name: checkout private repository
+
+on:
+  push:
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/checkout@v3
+        with:
+          # プライベートリポジトリを指定
+          repository: koki-develop/private-repo-example
+          # checkout 先のパスを指定
+          path: ./private-repo-example
+          # 秘密鍵を指定
+          ssh-key: ${{ secrets.PRIVATE_REPO_SSH_KEY }}
+
+      # プライベートリポジトリの中身を表示してみる
+      - run: ls ./private-repo-example
