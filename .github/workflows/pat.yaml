@@ -1,4 +1,4 @@
-name: checkout private repository ( deploy key )
+name: checkout private repository ( pat )
 
 on:
   push:
@@ -15,8 +15,8 @@ jobs:
           repository: koki-develop/private-repo-example
           # checkout 先のパスを指定
           path: ./private-repo-example
-          # 秘密鍵を指定
-          ssh-key: ${{ secrets.PRIVATE_REPO_SSH_KEY }}
+          # Personal Access Token を指定
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
       # プライベートリポジトリの中身を表示してみる
       - run: ls ./private-repo-example
